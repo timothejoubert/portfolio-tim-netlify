@@ -32,7 +32,7 @@ collections:
               widget: string,
               hint: 'Description du site dans les recherches Google',
             }
-          # - { label: Site Email, name: siteemail, widget: string, required: false }
+          - { label: Share Image, name: shareImage, widget: 'image', required: true, allow_multiple: false }
   - name: 'blog'
     label: 'Blog'
     folder: 'content/blog'
