@@ -75,7 +75,7 @@ collections:
           file: 'tagList',
           search_fields: [ 'item.*.tag' ],
           display_fields: [ 'item.*.tag' ],
-          value_fields: 'item.*.tag',
+          value_field: 'item.*.tag',
           multiple: false,
           required: false,
         }
