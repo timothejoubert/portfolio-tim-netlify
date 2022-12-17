@@ -42,7 +42,7 @@ collections:
               preview: false
           fields:
               -   label: Tags
-                  name: tags
+                  name: tagList
                   widget: list
                   summary: '{{fields.tag}}'
                   hint: 'Ajouter des tags'
@@ -70,11 +70,10 @@ collections:
           label: "Tags",
           name: "tags",
           widget: "relation",
-          file: "Tags",
+          file: "tags",
           collection: "siteSettings",
-          search_fields: [ "tags"],
-          value_field: "tags",
-          display_fields: ["tags"],
+          value_field: "tagList.tag",
+          search_fields: [ "tagList.tag"],
           multiple: true
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
