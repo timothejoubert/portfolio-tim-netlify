@@ -73,16 +73,14 @@ collections:
           widget: 'relation',
           collection: 'siteSettings',
           file: 'tagList',
-          search_fields: [ 'item.*.tag' ],
-          display_fields: [ 'item.*.tag' ],
-          value_field: 'item.*.tag',
-          multiple: false,
-          required: false,
+          search_fields: ['tagList.tag'],
+          display_fields: ['tagList.tag'],
+          value_field: 'tagList.tag',
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
-      - { label: "Coup de coeur", name: "promote", widget: "boolean", default: false }
-      - { label: "Nouveau", name: "new", widget: "boolean", default: false }
+      - { label: 'Coup de coeur', name: 'promote', widget: 'boolean', default: false }
+      - { label: 'Nouveau', name: 'new', widget: 'boolean', default: false }
       - { label: 'Lien', name: 'link', widget: 'markdown', required: false }
       - { label: 'Description', name: 'description', widget: 'string', required: false }
       - { label: 'Thumbnail', name: 'thumbnail', widget: 'image', allow_multiple: false, required: true, }
