@@ -36,7 +36,7 @@ collections:
           - { label: 'Share Image', name: 'shareImage', widget: 'image', required: true, allow_multiple: false }
       -   label: 'Tags'
           name: 'tags'
-          file: 'content/site/tag.json'
+          file: 'content/site/tags.json'
           format: 'json'
           editor:
               preview: false
@@ -47,16 +47,15 @@ collections:
                   hint: 'Ajouter des tags'
                   allow_add: true
                   field: { label: Tag, name: tag, widget: string }
-    ## About
-  - label: 'À propos'
-    name: 'about'
-    folder: 'content/about'
-    create: true
-    format: 'frontmatter'
-    slug: '{{slug}}'
-    fields:
-        - { label: 'Title', name: 'title', widget: 'string', required: true }
-        - { label: 'Description', name: 'description', widget: 'text', required: false }
+      -   label: 'À propos'
+          name: 'about'
+          file: 'content/site/about.json'
+          format: 'json'
+          editor:
+              preview: false
+          fields:
+            - { label: 'Title', name: 'title', widget: 'string', required: true }
+            - { label: 'Description', name: 'description', widget: 'text', required: false }
   - name: 'blog'
     label: 'Blog'
     folder: 'content/blog'
