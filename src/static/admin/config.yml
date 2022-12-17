@@ -67,15 +67,15 @@ collections:
     preview_path: 'projects/{{slug}}'
     fields:
       - {
-          label: "Tags",
-          name: "tags",
-          widget: "relation",
-          collection: "siteSettings",
-          file: "tags",
-          search_fields: [ "tags.*.tagList.*.tag"],
-          display_fields: [ "tags.*.tagList.*.tag"],
-#          value_field: "tagList.*.tag",
-          multiple: true,
+          label: 'Tags du projet',
+          name: 'projectTags',
+          widget: 'relation',
+          collection: 'siteSettings',
+          file: 'tags',
+          search_fields: [ 'tagList.*.tag'],
+          display_fields: [ 'tagList.*.tag'],
+          value_fields: 'tagList.*.tag',
+          multiple: false,
           required: false
       }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
