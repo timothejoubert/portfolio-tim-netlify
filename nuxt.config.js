@@ -70,7 +70,7 @@ export default {
 
     // ? The content property: https://content.nuxtjs.org/configuration
     content: {
-        dir: './src/content',
+        dir: 'content',
     },
 
     serverMiddleware: [
