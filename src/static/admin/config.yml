@@ -45,7 +45,12 @@ collections:
           editor:
               preview: false
           fields:
-              - { label: Tag , name: tag, widget: list, hint: 'Ajouter un tag', allow_add: true }
+              - label: Tags
+                name: tags
+                widget: list
+                hint: 'Ajouter des tags'
+                allow_add: true
+                field: { label: Tag, name: tag, widget: string }
     ## About
   - label: 'À propos'
     name: 'about'
