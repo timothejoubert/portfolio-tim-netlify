@@ -44,21 +44,20 @@ collections:
           fields:
             - { label: 'Title', name: 'title', widget: 'string', required: true }
             - { label: 'Description', name: 'description', widget: 'text', required: false }
-      -   label: 'Tags'
-          name: 'tags'
+      -   name: 'tags'
+          label: 'Tags'
           file: "site/content/tags.json"
           format: 'json'
           editor:
               preview: false
           fields:
-            -  label: Tags
-               name: tagList
+            -  name: tagList
+               label: Tags
                widget: list
                summary: '{{fields.tag}}'
                hint: 'Ajouter des tags'
                allow_add: true
                field: { label: Tag, name: tag, widget: string }
-
   - name: 'projects'
     label: 'Projets'
     label_singular: 'Project'
@@ -69,14 +68,14 @@ collections:
     preview_path: 'projects/{{slug}}'
     fields:
       - {
-          label: 'Tags du projet',
           name: 'projectTags',
+          label: 'Tags du projet',
           widget: 'relation',
           collection: 'siteSettings',
           file: 'tags',
-          search_fields: ['*.tagList.tag'],
-          display_fields: ['*.tagList.tag'],
-          value_field: '*.tagList.tag',
+          search_fields: ['item.*.tagList.tag'],
+          display_fields: ['item.*.tagList.tag'],
+          value_field: 'item.*.tagList.tag',
           multiple: true,
           required: false,
         }
