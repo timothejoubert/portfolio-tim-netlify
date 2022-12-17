@@ -1,5 +1,5 @@
-import fs from 'fs'
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
+import * as SITE_INFO from './src/content/site/info.json'
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -11,7 +11,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: process.env.APP_TITLE,
+        title: SITE_INFO.sitename || process.env.APP_TITLE_FALLBACK || '',
         htmlAttrs: {
             lang: 'fr',
         },
@@ -21,7 +21,7 @@ export default {
             {
                 hid: 'description',
                 name: 'description',
-                content: '',
+                content: SITE_INFO.sitedescription || '',
             },
             { name: 'format-detection', content: 'telephone=no' },
             { name: 'google-site-verification', content: 'o5sD6l8eVydQy3O8y0D3ETIcgafZZZwbNwKjh_1qimc' },
@@ -35,6 +35,42 @@ export default {
             { rel: 'manifest', href: '/favicon/site.webmanifest' },
             { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg', color: '#da532c' },
         ],
+    },
+
+    generate: {
+        async routes() {
+            const { $content } = require('@nuxt/content')
+            const files = await $content().only(['path']).fetch()
+
+            return files.map((file) => (file.path === '/index' ? '/' : file.path))
+        },
+    },
+
+    pwa: {
+        icon: {
+            source: 'static/icon.png',
+            filename: 'icon.png',
+        },
+        manifest: { name: SITE_INFO.sitename || process.env.npm_package_name || '', lang: process.env.lang },
+        meta: {
+            name: SITE_INFO.sitename || '',
+            lang: process.env.DEFAULT_LOCALE,
+            ogHost: process.env.APP_URL,
+            ogImage: '/preview.jpg',
+        },
+    },
+
+    env: {
+        url:
+            process.env.NODE_ENV === 'production'
+                ? process.env.URL || 'http://createADotEnvFileAndSetURL'
+                : 'http://localhost:3000',
+        lang: SITE_INFO.sitelang || 'fr-FR',
+    },
+
+    // ? The content property: https://content.nuxtjs.org/configuration
+    content: {
+        dir: 'content',
     },
 
     serverMiddleware: [
@@ -74,8 +110,7 @@ export default {
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
-        // https://sitemap.nuxtjs.org/guide/setup
-        '@nuxtjs/strapi',
+        '@nuxt/content',
         // '@nuxtjs/sitemap',
         '@nuxt/image',
         // https://cloudinary.nuxtjs.org/setup
@@ -83,11 +118,7 @@ export default {
     ],
 
     // image provider
-    // image: {
-    //     cloudinary: {
-    //         baseURL: '',
-    //     },
-    // },
+    // With strapi provider: https://image.nuxtjs.org/providers/strapi
     cloudinary: {
         cloudName: process.env.CLOUDINARY_NAME,
         apiKey: process.env.CLOUDINARY_KEY,
@@ -95,23 +126,12 @@ export default {
         useComponent: true,
     },
 
-    strapi: {
-        url: process.env.STRAPI_API_URL || 'http://localhost:1337/api',
-        entities: ['projects', 'about'],
-    },
-
     // https://fr.nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
-    publicRuntimeConfig: {
-        appTitle: process.env.APP_TITLE,
-        baseUrl: process.env.DEPLOYMENT_DATA === 'local' ? process.env.LOCAL_API_URL : process.env.STRAPI_API_URL,
-    },
-
-    // https://image.nuxtjs.org/providers/strapi
-    // image: {
-    //   strapi: {
-    //     baseURL: process.env.STRAPI_URL + 'uploads' || 'http://localhost:1337/uploads/',
-    //   },
+    // publicRuntimeConfig: {
+    //     appTitle: process.env.APP_TITLE,
+    //     baseUrl: process.env.STRAPI_API_URL || process.env.LOCAL_API_URL,
     // },
+
     // https://github.com/nuxt-community/svg-module
     svg: {
         svgSpriteLoader: {

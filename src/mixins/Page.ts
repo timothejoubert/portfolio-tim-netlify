@@ -28,6 +28,7 @@ export default Vue.extend({
             },
             title: this.metaTitle,
             meta,
+            script: [{ src: 'https://identity.netlify.com/v1/netlify-identity-widget.js' }],
         }
     },
     computed: {

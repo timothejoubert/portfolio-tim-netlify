@@ -8,9 +8,6 @@ import Page from '~/mixins/Page'
 
 export default mixins(Page).extend({
     name: 'Index',
-    updated() {
-        console.log('index updated')
-    },
     data() {
         return {
             pageData: { title: 'portfolio', metaDescription: 'home page' } as PageData,

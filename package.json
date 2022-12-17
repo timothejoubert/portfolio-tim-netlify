@@ -17,11 +17,9 @@
   "dependencies": {
     "@nuxt/image": "^0.7.1",
     "@nuxtjs/cloudinary": "^1.0.3",
-    "@nuxtjs/sentry": "^5.1.0",
-    "@nuxtjs/strapi": "^0.3.0",
+    "@nuxt/content": "^1.15.1",
     "@nuxtjs/svg": "^0.4.0",
     "@types/throttle-debounce": "^5.0.0",
-    "gsap": "^3.10.2",
     "nuxt": "^2.15.7",
     "portal-vue": "^2.1.7",
     "throttle-debounce": "^3.0.1"

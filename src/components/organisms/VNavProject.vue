@@ -46,7 +46,7 @@ export default Vue.extend({
         },
         allProject(): ProjectContent[] | [] {
             if (!this.$store.state.projectsData) return []
-            return [...new Array(4)].map(() => this.$store.state.projectsData).flat()
+            return [...new Array(1)].map(() => this.$store.state.projectsData).flat()
         },
         isPromoteActive(): boolean {
             return (
