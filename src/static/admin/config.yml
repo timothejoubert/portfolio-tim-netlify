@@ -46,7 +46,7 @@ collections:
             - { label: 'Description', name: 'description', widget: 'text', required: false }
       -   name: 'tags'
           label: 'Tags'
-          file: "tags"
+          file: "content/tags"
           format: 'json'
           editor:
               preview: false
@@ -72,7 +72,7 @@ collections:
           label: 'Tags du projet',
           widget: 'relation',
           collection: 'siteSettings',
-          file: 'tags',
+          file: 'content/tags',
           search_fields: ['tagList'],
           display_fields: ['tagList.tag'],
           value_field: 'tagList.tag',
