@@ -13,7 +13,7 @@ export default {
     head: {
         title: SITE_INFO.sitename || process.env.APP_TITLE_FALLBACK || '',
         htmlAttrs: {
-            lang: 'fr',
+            lang: process.env.DEFAULT_LOCALE || 'fr',
         },
         meta: [
             { charset: 'utf-8' },
@@ -70,7 +70,7 @@ export default {
 
     // ? The content property: https://content.nuxtjs.org/configuration
     content: {
-        dir: 'content',
+        dir: './src/content',
     },
 
     serverMiddleware: [

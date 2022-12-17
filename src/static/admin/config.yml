@@ -25,10 +25,10 @@ collections:
         editor:
           preview: false
         fields:
-          - { label: Site Name, name: sitename, widget: string, hint: 'Nom du site' }
+          - { label: Site Name, name: siteName, widget: string, hint: 'Nom du site' }
           - {
               label: Site Description,
-              name: sitedescription,
+              name: siteDescription,
               widget: string,
               hint: 'Description du site dans les recherches Google',
             }
