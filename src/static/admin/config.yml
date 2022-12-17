@@ -15,6 +15,7 @@ public_folder: /img
 
 # Docs: https://www.netlifycms.org/docs/configuration-options/#collections
 collections:
+    # Generals info
   - label: 'Site settings'
     name: 'site'
     files:
@@ -33,6 +34,18 @@ collections:
               hint: 'Description du site dans les recherches Google',
             }
           - { label: 'Share Image', name: 'shareImage', widget: 'image', required: true, allow_multiple: false }
+   ## Tags
+  - label: 'Tag de projet'
+    name: 'projectTag'
+    files:
+        - label: 'Tags'
+          name: 'tags'
+          file: 'content/site/tag.json'
+          format: 'json'
+          editor:
+              preview: false
+          fields:
+              - { label: Tag , name: tag, widget: list, hint: 'Ajouter un tag' }
   - name: 'blog'
     label: 'Blog'
     folder: 'content/blog'

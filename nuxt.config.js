@@ -1,6 +1,8 @@
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 import * as SITE_INFO from './content/site/info.json'
 
+const locale = process.env.DEFAULT_LOCALE || 'fr'
+const siteName = SITE_INFO.siteName || process.env.APP_TITLE_FALLBACK
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
@@ -11,9 +13,9 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: SITE_INFO.siteName || process.env.APP_TITLE_FALLBACK || '',
+        title: siteName,
         htmlAttrs: {
-            lang: process.env.DEFAULT_LOCALE || 'fr',
+            lang: locale,
         },
         meta: [
             { charset: 'utf-8' },
@@ -48,12 +50,15 @@ export default {
 
     pwa: {
         icon: {
-            source: 'static/icon.png',
-            filename: 'icon.png',
+            source: 'static/favicon.ico',
+            filename: 'favicon.ico',
         },
-        manifest: { name: SITE_INFO.sitename || process.env.npm_package_name || '', lang: process.env.lang },
+        manifest: {
+            name: siteName,
+            lang: locale,
+        },
         meta: {
-            name: SITE_INFO.sitename || '',
+            name: siteName,
             lang: process.env.DEFAULT_LOCALE,
             ogHost: process.env.APP_URL,
             ogImage: '/preview.jpg',
@@ -61,11 +66,8 @@ export default {
     },
 
     env: {
-        url:
-            process.env.NODE_ENV === 'production'
-                ? process.env.URL || 'http://createADotEnvFileAndSetURL'
-                : 'http://localhost:3000',
-        lang: SITE_INFO.sitelang || 'fr-FR',
+        url: process.env.NODE_ENV === 'production' ? process.env.APP_URL : 'http://localhost:3000',
+        lang: locale,
     },
 
     // ? The content property: https://content.nuxtjs.org/configuration
