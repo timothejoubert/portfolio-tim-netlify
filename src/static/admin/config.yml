@@ -73,7 +73,7 @@ collections:
           collection: "siteSettings",
           search_fields: [ "tags.tag"],
           value_field: "tags.tag",
-          display_fields: "tags.tag",
+          display_fields: ["tags.tag"],
         }
       - {
           label: 'Project Category',
@@ -83,9 +83,12 @@ collections:
           options: [{ label: 'Animals', value: 'animals' }, { label: 'Food', value: 'food' }],
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
+      - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
+      - { label: "Best", name: "promote", widget: "boolean", default: false }
+      - { label: "New", name: "new", widget: "boolean", default: false }
+      - { label: 'Link', name: 'link', widget: 'text', required: false }
       - { label: 'Description', name: 'description', widget: 'string', required: false }
-      - { label: 'Cover Image', name: 'cover', widget: 'image', required: false, allow_multiple: false }
-      - { label: 'Content', name: 'body', widget: 'markdown', required: false }
+      - { label: 'Thumbnail', name: 'thumbnail', widget: 'image', required: true, allow_multiple: false }
       - {
           label: 'Gallery',
           name: 'gallery',
