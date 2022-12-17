@@ -73,9 +73,9 @@ collections:
           widget: 'relation',
           collection: 'siteSettings',
           file: 'tags',
-          searchFields: 'tagList.*.tag',
-          displayFields: 'tagList.*.tag',
-          valueField: 'tagList.*.tag',
+          searchFields: 'tags.*.tagList.*.tag',
+          displayFields: 'tags.*.tagList.*.tag',
+          valueField: 'tags.*.tagList.*.tag',
           multiple: true,
           required: false,
         }
