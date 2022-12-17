@@ -43,13 +43,11 @@ collections:
           fields:
               -   label: Tags
                   name: tagList
-                  file: tagList
                   widget: list
                   summary: '{{fields.tag}}'
                   hint: 'Ajouter des tags'
                   allow_add: true
-                  fields:
-                    - { label: Tag, name: tag, widget: string }
+                  field: { label: Tag, name: tag, widget: string }
       -   label: 'À propos'
           name: 'about'
           file: 'content/site/about.json'
@@ -73,10 +71,10 @@ collections:
           name: 'projectTags',
           widget: 'relation',
           collection: 'siteSettings',
-          file: 'tagList',
-          search_fields: ['tagList.*.tag'],
-          display_fields: ['tagList.*.tag'],
-          value_field: 'tagList.*.tag',
+          file: 'tags',
+          search_fields: ['tagList.tag'],
+          display_fields: ['tagList.tag'],
+          value_field: 'tagList.tag',
           multiple: true,
           required: false,
         }
