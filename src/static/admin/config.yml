@@ -71,22 +71,16 @@ collections:
           name: "tags",
           widget: "relation",
           collection: "siteSettings",
-          search_fields: [ "tags.tag"],
-          value_field: "tags.tag",
-          display_fields: ["tags.tag"],
-        }
-      - {
-          label: 'Project Category',
-          name: 'category',
-          widget: 'select',
-          default: 'animals',
-          options: [{ label: 'Animals', value: 'animals' }, { label: 'Food', value: 'food' }],
+          search_fields: [ "tags"],
+          value_field: "tags",
+          display_fields: ["tags"],
+          multiple: true
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
-      - { label: "Best", name: "promote", widget: "boolean", default: false }
-      - { label: "New", name: "new", widget: "boolean", default: false }
-      - { label: 'Link', name: 'link', widget: 'text', required: false }
+      - { label: "Coup de coeur", name: "promote", widget: "boolean", default: false }
+      - { label: "Nouveau", name: "new", widget: "boolean", default: false }
+      - { label: 'Lien', name: 'link', widget: 'text', required: false }
       - { label: 'Description', name: 'description', widget: 'string', required: false }
       - { label: 'Thumbnail', name: 'thumbnail', widget: 'image', required: true, allow_multiple: false }
       - {
