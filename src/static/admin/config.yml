@@ -48,7 +48,8 @@ collections:
                   summary: '{{fields.tag}}'
                   hint: 'Ajouter des tags'
                   allow_add: true
-                  field: { label: Tag, name: tag, widget: string }
+                  fields:
+                    - { label: Tag, name: tag, widget: string }
       -   label: 'À propos'
           name: 'about'
           file: 'content/site/about.json'
@@ -73,9 +74,11 @@ collections:
           widget: 'relation',
           collection: 'siteSettings',
           file: 'tagList',
-          search_fields: ['tagList.tag'],
-          display_fields: ['tagList.tag'],
-          value_field: 'tagList.tag',
+          search_fields: ['tagList.*.tag'],
+          display_fields: ['tagList.*.tag'],
+          value_field: 'tagList.*.tag',
+          multiple: true,
+          required: false,
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
