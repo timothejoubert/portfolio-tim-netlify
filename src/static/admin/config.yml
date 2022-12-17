@@ -46,6 +46,16 @@ collections:
               preview: false
           fields:
               - { label: Tag , name: tag, widget: list, hint: 'Ajouter un tag' }
+    ## About
+  - label: 'À propos'
+    name: 'about'
+    folder: 'content/about'
+    create: true
+    format: 'frontmatter'
+    slug: '{{slug}}'
+    fields:
+        - { label: 'Title', name: 'title', widget: 'string', required: true }
+        - { label: 'Description', name: 'description', widget: 'text', required: false }
   - name: 'blog'
     label: 'Blog'
     folder: 'content/blog'
