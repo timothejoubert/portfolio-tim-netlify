@@ -1,5 +1,5 @@
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
-import * as SITE_INFO from './src/content/site/info.json'
+import * as SITE_INFO from './content/site/info.json'
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -11,7 +11,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: SITE_INFO.sitename || process.env.APP_TITLE_FALLBACK || '',
+        title: SITE_INFO.siteName || process.env.APP_TITLE_FALLBACK || '',
         htmlAttrs: {
             lang: process.env.DEFAULT_LOCALE || 'fr',
         },
@@ -21,7 +21,7 @@ export default {
             {
                 hid: 'description',
                 name: 'description',
-                content: SITE_INFO.sitedescription || '',
+                content: SITE_INFO.siteDescription || '',
             },
             { name: 'format-detection', content: 'telephone=no' },
             { name: 'google-site-verification', content: 'o5sD6l8eVydQy3O8y0D3ETIcgafZZZwbNwKjh_1qimc' },
