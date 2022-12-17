@@ -43,6 +43,7 @@ collections:
           fields:
               -   label: Tags
                   name: tagList
+                  file: tagList
                   widget: list
                   summary: '{{fields.tag}}'
                   hint: 'Ajouter des tags'
@@ -66,16 +67,18 @@ collections:
     slug: '{{slug}}'
     preview_path: 'projects/{{slug}}'
     fields:
-      -   label: 'Tags du projet'
-          name: 'projectTags'
-          widget: 'relation'
-          collection: 'siteSettings'
-          file: 'tags'
-          search_fields: [ 'item.*.tag']
-          display_fields: [ 'item.*.tag']
-          value_fields: 'item.*.tag'
-          multiple: false
-          required: false
+      - {
+          label: 'Tags du projet',
+          name: 'projectTags',
+          widget: 'relation',
+          collection: 'siteSettings',
+          file: 'tagList',
+          search_fields: [ 'item.*.tag' ],
+          display_fields: [ 'item.*.tag' ],
+          value_fields: 'item.*.tag',
+          multiple: false,
+          required: false,
+        }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
       - { label: "Coup de coeur", name: "promote", widget: "boolean", default: false }
