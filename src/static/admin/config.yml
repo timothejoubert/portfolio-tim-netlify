@@ -70,10 +70,11 @@ collections:
           label: "Tags",
           name: "tags",
           widget: "relation",
+          file: "Tags",
           collection: "siteSettings",
-          search_fields: [ "tags"],
-          value_field: "tags",
-          display_fields: ["tags"],
+          search_fields: [ "tags.*.tag"],
+          value_field: "tags.*.tag",
+          display_fields: ["tags.*.tag"],
           multiple: true
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
