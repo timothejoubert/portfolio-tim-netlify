@@ -71,12 +71,12 @@ collections:
           name: "tags",
           widget: "relation",
           collection: "siteSettings",
-          file: "tags",
           search_fields: [ "tags"],
           value_field: "tags.*.tagList.tag",
           display_fields: [ "tags.*.tagList.tag"],
-          multiple: true
-        }
+          multiple: true,
+          required: false
+      }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
       - { label: "Coup de coeur", name: "promote", widget: "boolean", default: false }
