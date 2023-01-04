@@ -1,14 +1,15 @@
 {
-    "tagList": [
-        "Développement",
-        "Print",
-        "Design d'interface",
-        "Identité visuelle",
-        "Motion",
-        "Typographie",
-        "Code créatif",
-        "Expression plastique",
-        "Photo",
-        "Édition"
-    ]
+  "tagList": [
+    "Développement",
+    "Print",
+    "Design d'interface",
+    "Identité visuelle",
+    "Motion",
+    "Typographie",
+    "Code créatif",
+    "Expression plastique",
+    "Photo",
+    "Édition",
+    "test"
+  ]
 }
