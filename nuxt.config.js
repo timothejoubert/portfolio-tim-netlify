@@ -1,8 +1,10 @@
 import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 import * as SITE_INFO from './content/site/info.json'
+import { version } from './package.json'
 
 const locale = process.env.DEFAULT_LOCALE || 'fr'
-const siteName = SITE_INFO.siteName || process.env.APP_TITLE_FALLBACK
+const siteName = SITE_INFO.siteName || 'Timothé Joubert'
+
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
@@ -27,6 +29,7 @@ export default {
             },
             { name: 'format-detection', content: 'telephone=no' },
             { name: 'google-site-verification', content: 'o5sD6l8eVydQy3O8y0D3ETIcgafZZZwbNwKjh_1qimc' },
+            { hid: 'version', name: 'version', content: version || '' },
         ],
         link: [
             // favicon
@@ -37,15 +40,6 @@ export default {
             { rel: 'manifest', href: '/favicon/site.webmanifest' },
             { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg', color: '#da532c' },
         ],
-    },
-
-    generate: {
-        async routes() {
-            const { $content } = require('@nuxt/content')
-            const files = await $content().only(['path']).fetch()
-
-            return files.map((file) => (file.path === '/index' ? '/' : file.path))
-        },
     },
 
     pwa: {
@@ -65,6 +59,15 @@ export default {
         },
     },
 
+    generate: {
+        async routes() {
+            const { $content } = require('@nuxt/content')
+            const files = await $content().only(['path']).fetch()
+
+            return files.map((file) => (file.path === '/index' ? '/' : file.path))
+        },
+    },
+
     env: {
         url: process.env.NODE_ENV === 'production' ? process.env.APP_URL : 'http://localhost:3000',
         lang: locale,
@@ -74,10 +77,6 @@ export default {
     content: {
         dir: 'content',
     },
-
-    serverMiddleware: [
-        // {path: '/api', handler: '~/api/index.js'}
-    ],
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: ['@/scss/main'],

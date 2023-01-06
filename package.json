@@ -4,22 +4,24 @@
   "description": "Portfolio Timothe joubert",
   "scripts": {
     "dev": "nuxt",
-    "net": "yarn netlify dev",
     "build": "nuxt build",
     "start": "nuxt start",
+    "net": "yarn netlify dev",
+    "local-back": "npx netlify-cms-proxy-server",
     "generate": "nuxt generate",
     "storybook": "nuxt storybook",
     "storybook:build": "nuxt storybook build",
     "lint:style": "stylelint \"**/*.{vue,css}\" --ignore-path .gitignore",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
-    "lint": "yarn lint:js"
+    "lint-fix": "yarn lint:js --fix && yarn lint:style --fix"
   },
   "dependencies": {
+    "@nuxt/content": "^1.15.1",
     "@nuxt/image": "^0.7.1",
     "@nuxtjs/cloudinary": "^1.0.3",
-    "@nuxt/content": "^1.15.1",
     "@nuxtjs/svg": "^0.4.0",
     "@types/throttle-debounce": "^5.0.0",
+    "netlify-cli": "^12.4.0",
     "nuxt": "^2.15.7",
     "portal-vue": "^2.1.7",
     "throttle-debounce": "^3.0.1"
@@ -41,6 +43,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^7.12.1",
     "include-media": "^1.4.10",
+    "netlify": "^13.1.0",
     "postcss-loader": "^3",
     "prettier": "^2.3.2",
     "sass": "^1.53.0",

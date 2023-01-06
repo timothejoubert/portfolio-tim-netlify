@@ -196,10 +196,6 @@ export default mixins(Resize).extend({
     }
 }
 
-.bottom {
-    z-index: 1;
-}
-
 .main-layout {
     position: relative;
 }
@@ -214,6 +210,7 @@ export default mixins(Resize).extend({
 
 .bottom {
     position: fixed;
+    z-index: 1;
     right: 0;
     bottom: 0;
     left: 0;

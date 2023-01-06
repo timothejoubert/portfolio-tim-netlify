@@ -1,17 +1,26 @@
+# used `npx netlify-cms-proxy-server` for use default proxy server
+# https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
+#local_backend: true
+
 site_url: https://timothe-joubert.netlify.app/
 logo_url: https://timothe-joubert.netlify.app/icon.png
 
-publish_mode: editorial_workflow
+#publish_mode: editorial_workflow
+
 backend:
   name: git-gateway
   branch: main
   squash_merges: true
 
-# used together with `npx netlify-cms-proxy-server`. https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
-local_backend: false
 
 media_folder: static/img
-public_folder: /img
+#public_folder: /img
+
+media_library:
+    name: cloudinary
+    config:
+        cloud_name: duiyjc3zu
+        api_key: 165339578982617
 
 # Docs: https://www.netlifycms.org/docs/configuration-options/#collections
 # Docs: https://www.netlifycms.org/docs/collection-types/
@@ -52,12 +61,23 @@ collections:
               preview: false
           fields:
             -  name: tagList
-               label: Tags
+               label: List de tag
                widget: list
+               slug: "tagList"
+               identifier_field: tagList
                summary: '{{fields.tag}}'
                hint: 'Ajouter des tags'
                allow_add: true
                field: { label: Tag, name: tag, widget: string }
+  - name: tags
+    label: Tags
+    folder: "content/tags"
+    create: true
+    slug: "{{name}}"
+    identifier_field: name
+    summary: "{{name}}"
+    fields:
+        - {name: name, label: Name}
   - name: 'projects'
     label: 'Projets'
     label_singular: 'Project'
@@ -70,13 +90,12 @@ collections:
       - {
           name: 'projectTags',
           label: 'Tags du projet',
-          widget: 'relation',
-          collection: 'siteSettings',
-          searchFields: 'tags.*.tagList.*.tag',
-          displayFields: 'tags.*.tagList.*.tag',
-          valueField: 'tags.*.tagList.*.tag',
+          widget: relation,
+          collection: "tags",
+          search_fields: ["name"],
+          value_field: "name",
+          display_fields: ["name"],
           multiple: true,
-          required: false,
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
@@ -91,5 +110,5 @@ collections:
           widget: 'list',
           required: false,
           summary: '{{fields.image}}',
-          field: { label: 'Image', name: 'image', widget: 'image' },
+          field: {label: Image, name: image, widget: string }
         }
