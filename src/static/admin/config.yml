@@ -1,8 +1,9 @@
 # used `npx netlify-cms-proxy-server` for use default proxy server
 # https://www.netlifycms.org/docs/beta-features/#working-with-a-local-git-repository
-#local_backend: true
+# check if locale storage site_url is not production url
+local_backend: true
 
-site_url: https://timothe-joubert.netlify.app/
+#site_url: https://timothe-joubert.netlify.app/
 logo_url: https://timothe-joubert.netlify.app/icon.png
 
 #publish_mode: editorial_workflow
@@ -53,24 +54,24 @@ collections:
           fields:
             - { label: 'Title', name: 'title', widget: 'string', required: true }
             - { label: 'Description', name: 'description', widget: 'text', required: false }
-      -   name: 'tags'
-          label: 'Tags'
-          file: 'content/site/tags.json'
-          format: 'json'
-          editor:
-              preview: false
-          fields:
-            -  name: tagList
-               label: List de tag
-               widget: list
-               slug: "tagList"
-               identifier_field: tagList
-               summary: '{{fields.tag}}'
-               hint: 'Ajouter des tags'
-               allow_add: true
-               field: { label: Tag, name: tag, widget: string }
+#      -   name: 'tags'
+#          label: 'Tags'
+#          file: 'content/site/tags.json'
+#          format: 'json'
+#          editor:
+#              preview: false
+#          fields:
+#            -  name: tagList
+#               label: List de tag
+#               widget: list
+#               slug: "tagList"
+#               identifier_field: tagList
+#               summary: '{{fields.tag}}'
+#               hint: 'Ajouter des tags'
+#               allow_add: true
+#               field: { label: Tag, name: tag, widget: string }
   - name: tags
-    label: Tags
+    label: Tags des projets
     folder: "content/tags"
     create: true
     slug: "{{name}}"
@@ -90,17 +91,16 @@ collections:
       - {
           name: 'projectTags',
           label: 'Tags du projet',
-          widget: relation,
+          widget: "relation",
           collection: "tags",
           search_fields: ["name"],
           value_field: "name",
-          display_fields: ["name"],
           multiple: true,
         }
       - { label: 'Title', name: 'title', widget: 'string', required: true }
       - { label: 'Date', name: 'date', widget: 'date', default: '', format: 'YYYY MM DD' }
-      - { label: 'Coup de coeur', name: 'promote', widget: 'boolean', default: false }
-      - { label: 'Nouveau', name: 'new', widget: 'boolean', default: false }
+      - { label: 'Coup de coeur', name: 'promote', widget: 'boolean', default: false, required: false  }
+      - { label: 'Nouveau', name: 'new', widget: 'boolean', default: false, required: false  }
       - { label: 'Lien', name: 'link', widget: 'markdown', required: false }
       - { label: 'Description', name: 'description', widget: 'string', required: false }
       - { label: 'Thumbnail', name: 'thumbnail', widget: 'image', allow_multiple: false, required: true, }
@@ -110,5 +110,5 @@ collections:
           widget: 'list',
           required: false,
           summary: '{{fields.image}}',
-          field: {label: Image, name: image, widget: string }
+          field: {label: Image, name: image, widget: image }
         }
