@@ -37,7 +37,7 @@
                 </transition>
             </div>
         </div>
-
+        <pre v-if="posts">{{ posts }}</pre>
         <transition name="project">
             <div v-if="isProjectOpen" :class="$style['project-panel']">
                 <nuxt />
@@ -63,8 +63,19 @@ import VDragGallery from '~/components/organisms/VDragGallery.vue'
 
 export default mixins(Resize).extend({
     components: { VTopBar, VNavProject, VAbout, VUiOptions, VDragGallery },
+    async asyncData({ $content }) {
+        const posts = await $content('projects').fetch()
+        console.log('md content projects', posts, $content)
+        return { posts }
+    },
+    // async fetch({ $content }) {
+    //     console.log('testerfergfergerkghihihukgjygt')
+    //     // this.posts = await $content('projects').fetch()
+    //     this.posts = await fetch('http://localhost:3000/_content/projects').then((res) => res.json())
+    // },
     data() {
         return {
+            posts: [],
             displaySplashScreen: true,
             enterSplashScreen: false,
             isSplashDone: false,

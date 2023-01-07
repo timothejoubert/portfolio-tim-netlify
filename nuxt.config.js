@@ -40,6 +40,9 @@ export default {
             { rel: 'manifest', href: '/favicon/site.webmanifest' },
             { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg', color: '#da532c' },
         ],
+        script: [
+            { src: '/js/netlify-identity.js' }, // load script in your static folder
+        ],
     },
 
     pwa: {
@@ -55,16 +58,7 @@ export default {
             name: siteName,
             lang: process.env.DEFAULT_LOCALE,
             ogHost: process.env.APP_URL,
-            ogImage: '/preview.jpg',
-        },
-    },
-
-    generate: {
-        async routes() {
-            const { $content } = require('@nuxt/content')
-            const files = await $content().only(['path']).fetch()
-
-            return files.map((file) => (file.path === '/index' ? '/' : file.path))
+            ogImage: '/share.jpg',
         },
     },
 
@@ -128,10 +122,9 @@ export default {
     },
 
     // https://fr.nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
-    // publicRuntimeConfig: {
-    //     appTitle: process.env.APP_TITLE,
-    //     baseUrl: process.env.STRAPI_API_URL || process.env.LOCAL_API_URL,
-    // },
+    publicRuntimeConfig: {
+        baseUrl: process.env.STRAPI_API_URL || process.env.LOCAL_API_URL,
+    },
 
     // https://github.com/nuxt-community/svg-module
     svg: {

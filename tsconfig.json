@@ -28,7 +28,8 @@
             "@nuxt/types",
             "@types/node",
             "nuxt-i18n",
-            "@nuxt/image"
+            "@nuxt/image",
+            "@nuxt/content"
         ]
     },
     "exclude": [

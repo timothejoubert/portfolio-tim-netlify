@@ -62,7 +62,9 @@ export default Vue.extend({
         const imgAttributes: Record<string, any> = {
             srcset: srcSet,
             sizes: imgSizes,
-            src: baseUrl + url,
+            src:
+                'https://res.cloudinary.com/duiyjc3zu/image/upload/v1671131988/large_Capture_d_ecran_2022_12_07_a_22_14_30_387b14f5a5.png' ||
+                baseUrl + url,
             alt: img?.alternativeText || 'text alternative fallback',
             width: width || '',
             height: height || '',

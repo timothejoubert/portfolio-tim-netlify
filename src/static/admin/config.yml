@@ -73,6 +73,7 @@ collections:
   - name: tags
     label: Tags des projets
     folder: "content/tags"
+    format: 'frontmatter'
     create: true
     slug: "{{name}}"
     identifier_field: name
