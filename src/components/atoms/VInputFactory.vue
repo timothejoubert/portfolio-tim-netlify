@@ -27,7 +27,7 @@ import {
 } from '~/utils/get-input-type'
 import MutationType from '~/constants/mutation-type'
 import { getBreakpointValue } from '~/utils/media'
-import { clamp, getCssProp, setCssProp } from '~/utils/functions'
+import { clamp, getCssProp, setCssProp, slugify } from '~/utils/functions'
 import VInputButton from '~/components/molecules/VButton/VInputButton.vue'
 
 export interface EventClickInput {
@@ -52,10 +52,9 @@ export default Vue.extend({
     computed: {
         tagExistInProjects(): boolean {
             if (!isTag(this.inputData.name)) return true
-
             const currentTagIsInProjects = this.$store.state.projectsData
                 ?.map((project: ProjectContent) =>
-                    project.tags?.filter((tag) => this.inputProps.name.replace('tag-', '') === tag.slug)
+                    project.projectTags?.filter((tag) => this.inputProps.name === 'tag-' + slugify(tag))
                 )
                 .flat(2)
             return !!currentTagIsInProjects?.length

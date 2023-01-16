@@ -10,7 +10,7 @@ export default Vue.extend({
     name: 'VImage',
     components: { ImagePlaceHolder },
     props: {
-        strapiImage: Object as PropType<ImageAttributes>,
+        image: [Object, String] as PropType<ImageAttributes | string>,
     },
     data() {
         return {
@@ -25,32 +25,29 @@ export default Vue.extend({
         }
     },
     render(createElement): VNode {
-        // console.log(this.strapiImage)
-        const mainImage = this.strapiImage
-        const img = mainImage || this.strapiImage?.formats?.large
+        const isStaticUrl = typeof this.image === 'string'
+        const img = this.image?.formats?.large || this.image
 
         if (!img) return createElement('')
-
-        const { url, width, height, ext } = img || {}
-
-        // TODO: detect if dev or prod mode for display right path
-        const baseUrl = this.$config.baseUrl
-
+        const { url, width, height } = img || {}
+        const src = isStaticUrl ? this.image : this.$config.baseUrl + url
         let srcSet = ''
         let imgSizes = ''
-        // (max-width: 640px) 100vw,
-        // get srcset string from all img formats
-        if (mainImage && !!Object.getOwnPropertyDescriptor(mainImage, 'formats') && !!mainImage.formats) {
-            Object.keys(mainImage.formats)
+
+        // img sources
+        if (!isStaticUrl && 'formats' in img && !!img.formats) {
+            // (max-width: 640px) 100vw,
+            // get srcset string from all img formats
+            Object.keys(img.formats)
                 .sort((prev: string, next: string) => {
-                    const formats = mainImage?.formats as ImageFormats
+                    const formats = img?.formats as ImageFormats
                     if (!formats) return 0
                     const prevFormat = formats[prev as ImageFormatName]
                     const nextFormat = formats[next as ImageFormatName]
                     return (prevFormat?.width || 0) - (nextFormat?.width || 0)
                 })
                 .forEach((formatKey: string, index: number, formatsKey: string[]) => {
-                    const format = mainImage?.formats as ImageFormats
+                    const format = img?.formats as ImageFormats
                     const formatData = format[formatKey as ImageFormatName] as ImageData
                     if (!formatData) return
                     const separator = index === formatsKey.length - 1 ? '' : ','
@@ -62,9 +59,7 @@ export default Vue.extend({
         const imgAttributes: Record<string, any> = {
             srcset: srcSet,
             sizes: imgSizes,
-            src:
-                'https://res.cloudinary.com/duiyjc3zu/image/upload/v1671131988/large_Capture_d_ecran_2022_12_07_a_22_14_30_387b14f5a5.png' ||
-                baseUrl + url,
+            src,
             alt: img?.alternativeText || 'text alternative fallback',
             width: width || '',
             height: height || '',

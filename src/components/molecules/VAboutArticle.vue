@@ -1,23 +1,20 @@
 <template>
-    <div :class="$style.root">
-        <h3 :class="[$style.title, 'body-m']">{{ article.title }}</h3>
-        <p :class="[$style.body, 'body-s']">{{ article.body }}</p>
+    <div v-if="article" :class="$style.root">
+        <v-markdown v-if="article.title" :content="article.title" :class="[$style.title, 'body-m']" />
+        <p :class="[$style.content, 'body-s']">{{ article.content }}</p>
     </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import type { PropType } from 'vue'
+import VMarkdown from '~/components/atoms/VMarkdown.vue'
 
 export default Vue.extend({
     name: 'VAboutArticle',
+    components: { VMarkdown },
     props: {
         article: Object as PropType<AboutArticle>,
-    },
-    computed: {
-        // articles(): AboutArticle[] | false {
-        //     return !!this.articles?.length && this.articles
-        // },
     },
 })
 </script>
@@ -28,15 +25,16 @@ export default Vue.extend({
     width: rem(300);
 
     &:not(:last-child) {
-        padding-bottom: rem(23);
+        padding-bottom: rem(28);
     }
 }
 
 .title {
-    padding-bottom: rem(6);
+    padding-bottom: rem(4);
+    opacity: 0.9;
 }
 
-.body {
+.content {
     opacity: 0.6;
 }
 </style>

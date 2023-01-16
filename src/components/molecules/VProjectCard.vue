@@ -16,7 +16,7 @@
                         {{ project.date }}
                     </p>
                 </div>
-                <span v-if="project.promoted" :style="{ color: 'white', marginLeft: '10px' }">❤︎</span>
+                <span v-if="project.promote" :style="{ color: 'white', marginLeft: '10px' }">❤︎</span>
                 <div v-if="tags" :class="[$style.tags]">
                     <v-pill
                         v-for="(tag, indexTag) in tags"
@@ -24,13 +24,13 @@
                         :style="{ '--tag-index': indexTag }"
                         :class="$style.tag"
                         size="xxs"
-                        :label="tag.name"
+                        :label="tag"
                     />
                 </div>
             </div>
 
             <div :class="$style.thumbnail">
-                <v-image :strapi-image="project.thumbnail" :class="$style.image" />
+                <v-image :image="project.thumbnail" :class="$style.image" />
             </div>
         </nuxt-link>
         <v-new-pill v-show="displayRemote" :class="$style.promote" label="New" :grow="grow" />
@@ -44,6 +44,7 @@ import { mapGetters } from 'vuex'
 import VImage from '~/components/atoms/VImage.vue'
 import VPill from '~/components/atoms/VPill.vue'
 import VNewPill from '~/components/atoms/VNewPill.vue'
+import { parseDateInArray } from '~/utils/date-utils'
 
 export default Vue.extend({
     name: 'VProjectCard',
@@ -67,12 +68,15 @@ export default Vue.extend({
                 this.isAnimationEnter && this.$style['root--enter'],
             ]
         },
-        tags(): ProjectContent['tags'] | undefined {
-            const tags = this.project?.tags?.slice()
-            if (!tags || !tags?.[0].name) return
-            return tags.sort((current: Tag, next: Tag) => {
-                return next.name.length - current.name.length
+        tags(): ProjectContent['projectTags'] | null {
+            const tags = this.project?.projectTags?.slice()
+            if (!tags || !tags?.[0]) return null
+            return tags.sort((current: string, next: string) => {
+                return next.length - current.length
             })
+        },
+        parsedDate(): string[] {
+            return parseDateInArray(this.project.date)
         },
         hasSlug(): boolean {
             return !!this.project?.slug
@@ -82,7 +86,7 @@ export default Vue.extend({
         },
         displayRemote(): boolean {
             // TODO error in client-side rendered
-            return !!this.project?.promoted // Math.random() > 0.8
+            return !!this.project?.promote // Math.random() > 0.8
         },
     },
     methods: {

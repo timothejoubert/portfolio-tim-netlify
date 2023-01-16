@@ -1,31 +1,23 @@
 import { slugify } from '~/utils/functions'
 
-function parseProjects(response: undefined | StrapiWebResponses): ProjectContent[] | undefined {
-    const result = response?.data
+function parseTags(projects: ProjectResponse[] | undefined): InputParameter[] | null {
+    if (!projects) return null
 
-    if (!result) return
-    return result.map((response: StrapiDataBaseResponse) => {
-        const attributes = (response.attributes as StrapiProjectResponse) || {}
-
-        const tags = attributes?.tags?.map((tag: TagResponse) => {
-            return { ...tag, slug: slugify(tag.name) }
+    const tagInputs: InputParameter[] = []
+    projects?.forEach((project: ProjectResponse) => {
+        project.projectTags?.forEach((tag: string) => {
+            if (tagInputs?.filter((input) => input?.label === tag)?.length) return
+            tagInputs.push({
+                name: 'tag-' + slugify(tag),
+                label: tag,
+                type: 'checkbox',
+                checked: false,
+                icon: 'validate',
+            } as InputParameter)
         })
-
-        return {
-            '@type': 'project',
-            id: response.id,
-            slug: slugify(attributes.title),
-            title: attributes.title,
-            date: attributes?.date || null,
-            tags: tags || null,
-            metaDescription: attributes.metaDescription,
-            description: attributes.description,
-            promoted: attributes.new,
-            thumbnail: (attributes.thumbnail.data as ImageDataContent).attributes,
-            medias: (attributes.medias.data as ImageDataContent[])?.map((imageData) => imageData.attributes) || [],
-            links: attributes.links || null,
-        }
     })
+
+    return tagInputs
 }
 
 function parseAbout(response: undefined | StrapiWebResponse): AboutBlock | undefined {
@@ -45,4 +37,4 @@ function parseAbout(response: undefined | StrapiWebResponse): AboutBlock | undef
     }
 }
 
-export { parseProjects, parseAbout }
+export { parseTags, parseAbout }

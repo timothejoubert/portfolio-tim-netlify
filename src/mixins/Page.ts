@@ -36,26 +36,20 @@ export default Vue.extend({
             return this.$route.fullPath === '/' || this.$route.name === 'index'
         },
         isProject(): boolean {
-            return this.pageData['@type'] === 'project'
+            return this.pageData['@type'] === 'project' || this.$route.path.includes('project')
         },
         isAbout(): boolean {
             return this.pageData['@type'] === 'about'
         },
         metaTitle(): string {
-            return this.pageData?.title
-                ? this.$config.appTitle + ' | ' + this.pageData.title
-                : (this.pageData?.title ? this.pageData.title + ' | ' : '') + this.$config.appTitle
+            if (this.pageData?.title) return this.$config.appTitle + ' | ' + this.pageData.title
+            if (this.isProject) return this.project.title + ' | ' + this.$config.appTitle
+            return this.$config.appTitle
         },
     },
     methods: {
-        getMetaImage(): string | undefined {
-            const thumbnail: ImageDataContent | false =
-                !!this.pageData?.thumbnail?.data &&
-                (Array.isArray(this.pageData.thumbnail.data)
-                    ? (this.pageData.thumbnail.data[0] as ImageDataContent)
-                    : this.pageData.thumbnail.data)
-
-            return thumbnail ? thumbnail?.attributes?.url : '/images/share.jpg'
+        getMetaImage(): string {
+            return this.pageData?.thumbnail || '/images/share.jpg'
         },
         getPageUrl(): string {
             return this.$config.baseURL + this.$route.fullPath.substring(1)

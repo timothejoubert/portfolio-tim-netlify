@@ -92,10 +92,10 @@ const UI_PARAMETERS: ParameterSection[] = [
                     },
                 ],
             },
-            {
-                title: 'Filtrer par',
-                children: [...checkBoxesTag],
-            },
+            // {
+            //     title: 'Filtrer par',
+            //     children: [...checkBoxesTag],
+            // },
         ],
     },
 ]

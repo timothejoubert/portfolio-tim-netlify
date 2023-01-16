@@ -3,7 +3,8 @@
 # check if locale storage site_url is not production url
 local_backend: true
 
-#site_url: https://timothe-joubert.netlify.app/
+#https://timothe-joubert.netlify.app/
+site_url: http://localhost:3000/
 logo_url: https://timothe-joubert.netlify.app/icon.png
 
 #publish_mode: editorial_workflow
@@ -53,23 +54,30 @@ collections:
               preview: false
           fields:
             - { label: 'Title', name: 'title', widget: 'string', required: true }
-            - { label: 'Description', name: 'description', widget: 'text', required: false }
-#      -   name: 'tags'
-#          label: 'Tags'
-#          file: 'content/site/tags.json'
-#          format: 'json'
-#          editor:
-#              preview: false
-#          fields:
-#            -  name: tagList
-#               label: List de tag
-#               widget: list
-#               slug: "tagList"
-#               identifier_field: tagList
-#               summary: '{{fields.tag}}'
-#               hint: 'Ajouter des tags'
-#               allow_add: true
-#               field: { label: Tag, name: tag, widget: string }
+            - { label: 'Description', name: 'description', widget: 'markdown', required: false }
+            - label: 'Réseaux'
+              name: 'socials'
+              widget: 'list'
+              required: false
+              summary: '{{fields.name}}'
+              fields:
+                - { label: 'Nom', name: 'name', widget: 'string' }
+                - { label: 'Lien', name: 'link', widget: 'string' }
+            - label: 'Sections'
+              name: 'sections'
+              widget: 'list'
+              required: false
+              summary: '{{fields.title}}'
+              fields:
+                - { label: 'Titre', name: 'title', widget: 'string', required: false }
+                -  label: Articles
+                   name: articles
+                   widget: list
+                   required: false
+                   summary: '{{fields.title}}'
+                   fields:
+                     - { label: 'Titre', name: 'title', widget: 'markdown', required: false }
+                     - { label: 'Contenu', name: 'content', widget: 'text', required: false }
   - name: tags
     label: Tags des projets
     folder: "content/tags"

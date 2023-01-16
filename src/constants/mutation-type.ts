@@ -2,6 +2,7 @@ enum MutationType {
     WINDOW_WIDTH = 'windowWidth',
     WINDOW_HEIGHT = 'windowHeight',
     PROJECTS_DATA = 'projectsData',
+    PROJECTS_TAGS = 'projectsTags',
     ABOUT_DATA = 'aboutData',
     SPLASH_SCREEN_FINISH = 'splashScreenFinish',
     ANIMATION_ENTER = 'animationEnter',

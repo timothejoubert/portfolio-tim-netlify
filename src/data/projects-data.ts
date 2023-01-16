@@ -3,6 +3,12 @@ import TAG_LABELS from '~/data/filters'
 
 const getRandomTags = () => {
     return [...Array(getRandomInt(1, 4)).keys()].map(() => {
+        return TAG_LABELS[Math.floor(Math.random() * TAG_LABELS.length)]
+    })
+}
+
+const getRandomTagsInput = () => {
+    return [...Array(getRandomInt(1, 4)).keys()].map(() => {
         const label = TAG_LABELS[Math.floor(Math.random() * TAG_LABELS.length)]
         return { name: label, slug: slugify(label), id: Math.ceil(Math.random() * 100) }
     })
@@ -21,7 +27,7 @@ const PROJECTS_DATA: ProjectContent[] = [
         slug: 'projet-1',
         title: 'Projet 1',
         date: '2022',
-        promoted: isPromoted(),
+        promote: isPromoted(),
         metaDescription: 'Projet 1 - Méta description présente dans la recherche google',
         description:
             'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.',
@@ -43,7 +49,7 @@ const PROJECTS_DATA: ProjectContent[] = [
             createdAt: '2022-10-05T21:12:23.019Z',
             updatedAt: '2022-10-05T21:12:23.019Z',
         },
-        tags: [...getRandomTags()],
+        projectTags: [...getRandomTags()],
         links: FALLBACK_LINK,
     },
     {
@@ -52,9 +58,9 @@ const PROJECTS_DATA: ProjectContent[] = [
         slug: 'projet-2',
         title: 'Projet 2',
         date: '2022',
-        promoted: isPromoted(),
+        promote: isPromoted(),
         metaDescription: 'Projet 2 - Méta description présente dans la recherche google.',
-        description: null,
+        description: undefined,
         thumbnail: {
             name: 'fontimate-01-thumbnail.png',
             alternativeText: 'fontimate-01-thumbnail.png',
@@ -73,7 +79,7 @@ const PROJECTS_DATA: ProjectContent[] = [
             createdAt: '2022-10-05T21:12:23.019Z',
             updatedAt: '2022-10-05T21:12:23.019Z',
         },
-        tags: [...getRandomTags()],
+        projectTags: [...getRandomTags()],
         links: FALLBACK_LINK,
     },
     {
@@ -82,7 +88,7 @@ const PROJECTS_DATA: ProjectContent[] = [
         slug: 'projet-3',
         title: 'Projet 3',
         date: '2022',
-        promoted: isPromoted(),
+        promote: isPromoted(),
         metaDescription: 'Projet 3 - Méta description présente dans la recherche google.',
         description:
             'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.',
@@ -104,7 +110,7 @@ const PROJECTS_DATA: ProjectContent[] = [
             createdAt: '2022-10-08T13:16:05.115Z',
             updatedAt: '2022-10-08T13:16:05.115Z',
         },
-        tags: [...getRandomTags()],
+        projectTags: [...getRandomTags()],
         links: FALLBACK_LINK,
     },
     {
@@ -113,7 +119,7 @@ const PROJECTS_DATA: ProjectContent[] = [
         slug: 'projet-4',
         title: 'Projet 4',
         date: '2022',
-        promoted: isPromoted(),
+        promote: isPromoted(),
         metaDescription: 'Projet 4 - Méta description présente dans la recherche google',
         description:
             'On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases are perfectly simple and easy to distinguish.',
@@ -135,7 +141,7 @@ const PROJECTS_DATA: ProjectContent[] = [
             createdAt: '2022-11-02T21:33:11.599Z',
             updatedAt: '2022-11-02T21:33:11.599Z',
         },
-        tags: [...getRandomTags()],
+        projectTags: [...getRandomTags()],
         links: FALLBACK_LINK,
     },
     {
@@ -144,7 +150,7 @@ const PROJECTS_DATA: ProjectContent[] = [
         slug: 'tous-moche-!',
         title: 'Tous moche !',
         date: '2022',
-        promoted: isPromoted(),
+        promote: isPromoted(),
         metaDescription:
             'Projet 5 | Description de la page présente sous le titre de la page dans la recherche google.',
         description:
@@ -167,7 +173,7 @@ const PROJECTS_DATA: ProjectContent[] = [
             createdAt: '2022-11-02T21:34:56.150Z',
             updatedAt: '2022-11-02T21:34:56.150Z',
         },
-        tags: [...getRandomTags()],
+        projectTags: [...getRandomTags()],
         links: FALLBACK_LINK,
     },
     {
@@ -176,7 +182,7 @@ const PROJECTS_DATA: ProjectContent[] = [
         slug: 'prcht',
         title: 'Prcht',
         date: '2022',
-        promoted: isPromoted(),
+        promote: isPromoted(),
         metaDescription:
             'Projet 6 | Description de la page présente sous le titre de la page dans la recherche google.',
         description:
@@ -199,7 +205,7 @@ const PROJECTS_DATA: ProjectContent[] = [
             createdAt: '2022-11-02T22:36:13.332Z',
             updatedAt: '2022-11-02T22:36:13.332Z',
         },
-        tags: [...getRandomTags()],
+        projectTags: [...getRandomTags()],
         links: FALLBACK_LINK,
     },
 ]

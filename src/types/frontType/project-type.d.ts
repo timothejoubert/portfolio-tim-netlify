@@ -1,27 +1,33 @@
 // PROJECT //
-interface StrapiProjectResponse extends StrapiBlockCreated, PageData {
-    description: string | null
-    new: boolean
-    date: string | null
-    thumbnail: ImageObject
-    tags: TagResponse[] | null
-    medias: ImageObject
-    links: Link[]
+
+interface ProjectResponse extends NodeType {
+    id: number
+    slug: string
+    title: string
+    date: string
+    metaDescription?: string
+    description?: string
+    isNew?: boolean
+    promote?: boolean
+    thumbnail: ImageAttributes | string
+    gallery?: string[]
+    projectTags: string[]
+    links?: Link[]
 }
 
 interface ProjectContent extends NodeType {
     id: number
     slug: string
     title: string
-    date: string | null
+    date: string
     metaDescription?: string
-    description: string | null
+    description?: string
     isNew?: boolean
-    promoted?: boolean
-    thumbnail: ImageAttributes
-    medias?: ImageAttributes[]
-    tags: Tag[] | null
-    links: Link[] | null
+    promote?: boolean
+    thumbnail: ImageAttributes | string
+    gallery?: string[]
+    projectTags: string[]
+    links?: Link[]
 }
 
 interface TagResponse {
@@ -30,7 +36,6 @@ interface TagResponse {
 }
 
 interface Tag {
-    id: number
     name: string
     slug: string
 }

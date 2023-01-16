@@ -1,4 +1,58 @@
 {
-  "title": "Titre about ",
-  "description": "Description à propos"
+  "title": "Timothé Joubert",
+  "description": "Timothé est un **designer graphique** & **développeur front-end,** travaillant actuellement chez **rézo zéro.** Il réalise et imagine des **expériences webs** **attractives** et **singulières.**\n",
+  "socials": [
+    {
+      "name": "Instagram",
+      "link": "https://www.instagram.com/thim_ox/"
+    },
+    {
+      "name": "Github",
+      "link": "https://github.com/timothejoubert"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Formation",
+      "articles": [
+        {
+          "title": "Master 2",
+          "content": "Faculté Lyon 2, Bron"
+        },
+        {
+          "title": "DSAA",
+          "content": "La Martinière Diderot, Lyon"
+        },
+        {
+          "title": "DEC",
+          "content": "Intégration multimédia, Québec"
+        },
+        {
+          "title": "BTS",
+          "content": "Design Graphique, Villefontaine"
+        }
+      ]
+    },
+    {
+      "title": "Expérience",
+      "articles": [
+        {
+          "title": "[Rézo zéro](https://rezo-zero.com/)",
+          "content": "Agence web, Lyon"
+        },
+        {
+          "title": "[Screen club](https://www.screen-club.com/)",
+          "content": "Développeur indépendant, Lyon"
+        },
+        {
+          "title": "[Monolith](https://monolith.agency/)",
+          "content": "Agence digitale, Montréal"
+        },
+        {
+          "title": "[Les Abattoirs](http://www.lesabattoirs.fr/)",
+          "content": "Scène de musique, Bourgoin-Jallieu"
+        }
+      ]
+    }
+  ]
 }

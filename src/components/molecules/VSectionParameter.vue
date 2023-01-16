@@ -44,6 +44,14 @@ export default Vue.extend({
     computed: {
         ...mapGetters(['isUiOptionsOpen']),
         parameters(): ParameterContent[] {
+            if (this.section.title === 'Project filters') {
+                const parameters = this.section.parameters.slice()
+                parameters.push({
+                    title: 'Filtrer par',
+                    children: this.$store.state.projectsTags,
+                })
+                return parameters
+            }
             return this.section.parameters
         },
         isInterface(): boolean {

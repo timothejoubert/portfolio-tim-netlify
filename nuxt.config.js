@@ -41,7 +41,8 @@ export default {
             { rel: 'mask-icon', href: '/favicon/safari-pinned-tab.svg', color: '#da532c' },
         ],
         script: [
-            { src: '/js/netlify-identity.js' }, // load script in your static folder
+            // import don't work actually
+            { src: 'js/netlify-identity.js' }, // load script in your static folder
         ],
     },
 
@@ -123,7 +124,8 @@ export default {
 
     // https://fr.nuxtjs.org/docs/2.x/configuration-glossary/configuration-runtime-config/
     publicRuntimeConfig: {
-        baseUrl: process.env.STRAPI_API_URL || process.env.LOCAL_API_URL,
+        baseUrl: process.env.APP_URL || 'https://timothejoubert.com',
+        appTitle: process.env.APP_TITLE || 'Timothé Joubert',
     },
 
     // https://github.com/nuxt-community/svg-module

@@ -43,7 +43,7 @@ interface NodeType {
 interface PageData extends NodeType {
     title: string
     metaDescription?: string
-    thumbnail?: ImageObject
+    thumbnail?: string
 }
 
 // IMAGE //

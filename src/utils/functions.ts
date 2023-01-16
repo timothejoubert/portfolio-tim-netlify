@@ -24,6 +24,20 @@ export const lerp = (a: number, b: number, n: number): number => {
     return (1 - n) * a + n * b
 }
 
+export const shuffleProjects = (array: ProjectContent[]): ProjectContent[] => {
+    const newArray = [...array]
+    const length = newArray.length
+
+    for (let start = 0; start < length; start++) {
+        const randomPosition = Math.floor((newArray.length - start) * Math.random())
+        const randomItem = newArray.splice(randomPosition, 1)
+
+        newArray.push(...randomItem)
+    }
+
+    return newArray
+}
+
 export const getRandomFloat = (min: number, max: number, decimals: number) => {
     const str = (Math.random() * (max - min) + min).toFixed(decimals)
 

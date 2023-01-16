@@ -18,11 +18,11 @@ interface AboutSection {
 
 interface AboutArticle {
     title: string
-    body: string
+    content: string
 }
 
 interface Socials {
     name?: 'instagram' | 'github' | 'codepen' | 'p5' | 'facebook' | 'behance'
     icon?: ImageData
-    url?: string
+    link?: string
 }

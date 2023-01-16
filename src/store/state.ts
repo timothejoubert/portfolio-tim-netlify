@@ -4,6 +4,7 @@ export default (): RootState => ({
     // Data
     projectsData: [],
     aboutData: null,
+    projectsTags: [],
     // Loading
     animationEnter: false,
     splashScreenFinish: false,

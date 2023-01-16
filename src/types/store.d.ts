@@ -4,6 +4,7 @@ interface RootState {
     // Data
     projectsData: ProjectContent[] | []
     aboutData: AboutBlock | null
+    projectsTags: InputParameter[]
     // Loading
     animationEnter: boolean
     splashScreenFinish: boolean

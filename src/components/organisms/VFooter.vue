@@ -15,7 +15,7 @@
         </button>
         <ul v-if="socials" ref="socials" :class="$style.socials">
             <li v-for="(social, i) in socials" :key="i" :class="$style.social">
-                <a :href="social.url" target="_blank">
+                <a :href="social.link" target="_blank">
                     <component :is="`icon-${social.name}`" :class="$style['social__icon']" />
                 </a>
             </li>

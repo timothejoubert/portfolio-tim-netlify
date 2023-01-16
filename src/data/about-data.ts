@@ -12,7 +12,7 @@ const ABOUT_DATA = {
         },
     ],
     description:
-        'Timothé est un **designer graphique** & **développeur front-end,** travaillant actuellement chez **rézo zéro.** Il réalise et imagine des **expériences webs** **attrictives** et **singulières.**   ',
+        'Timothé est un **designer graphique** & **développeur front-end,** travaillant actuellement chez **rézo zéro.** Il réalise et imagine des **expériences webs** **attractives** et **singulières.**   ',
     sections: [
         {
             title: 'Formation',

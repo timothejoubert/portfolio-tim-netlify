@@ -20,8 +20,8 @@
 import Vue from 'vue'
 import { mapGetters } from 'vuex'
 import VProjectCard from '~/components/molecules/VProjectCard.vue'
-import { getCssProp } from '~/utils/functions'
-import { isDate, isPromoteFilter, isRandomFilter } from '~/utils/get-input-type'
+import { getCssProp, shuffleProjects, slugify } from '~/utils/functions'
+import { isDate, isPromoteFilter } from '~/utils/get-input-type'
 
 export default Vue.extend({
     name: 'VNavProject',
@@ -33,7 +33,6 @@ export default Vue.extend({
             updateRandomize: false,
             randomizeValue: '',
             projectOrder: false,
-            isPromoted: false,
         }
     },
     computed: {
@@ -64,21 +63,27 @@ export default Vue.extend({
 
             if (this.tagFilter?.length) {
                 projects = this.allProject.filter((project: ProjectContent) => {
-                    return project.tags?.some((tag) => this.tagFilter.includes(tag.slug))
+                    return project.projectTags?.some((tag) => this.tagFilter.includes(slugify(tag)))
                 })
             }
 
-            if (this.updateRandomize) projects = projects.sort(() => 0.5 - Math.random())
-            if (this.isPromoteActive) projects = projects.filter((project: ProjectContent) => project.promoted)
+            projects = this.isOrderedActive
+                ? projects.sort(
+                      (previousProject, nextProject) =>
+                          Number(previousProject.date.split(' ').join('')) -
+                          Number(nextProject.date.split(' ').join(''))
+                  )
+                : projects.sort(
+                      (previousProject, nextProject) =>
+                          Number(nextProject.date.split(' ').join('')) -
+                          Number(previousProject.date.split(' ').join(''))
+                  )
 
-            projects =
-                this.isOrderedActive || !!this.activeFilter?.length
-                    ? projects.sort(
-                          (previousProject, nextProject) => Number(previousProject.date) - Number(nextProject.date)
-                      )
-                    : projects.sort(
-                          (previousProject, nextProject) => Number(nextProject.date) - Number(previousProject.date)
-                      )
+            if (this.updateRandomize && this.randomizeValue.includes('randomize')) {
+                projects = shuffleProjects(projects.slice())
+            }
+            if (this.isPromoteActive) projects = projects.filter((project: ProjectContent) => project.promote)
+
             return projects
         },
     },
@@ -108,6 +113,7 @@ export default Vue.extend({
     methods: {
         updateRandomizeValue() {
             this.randomizeValue = this.activeFilter?.filter((filter: string) => filter.includes('randomize'))?.[0] || ''
+            console.log(this.updateRandomize, this.randomizeValue)
         },
         getActiveRoute() {
             this.activeProject = this.$route.params.slug
